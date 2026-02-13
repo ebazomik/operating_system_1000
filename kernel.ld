@@ -14,22 +14,22 @@ ENTRY(boot)													/* Entry point boot in .text.boot */
 
 SECTIONS {
 
-	. = 0x80200000										/* Load address, openSBI jump here */ 
+	. = 0x80200000;										/* Load address, openSBI jump here */ 
 
-	.text:{
+	.text : {
 		KEEP(*(.text.boot));						/* boot.s: first instructions (must be at 0x80200000) */
 		*(.text .text.*);								/* Other code: main.c, ecc */
 	}
 
-	.rodata: ALIGN(4) {								/* Read-only data (strings, const, ecc) */
+	.rodata ALIGN(4) : {								/* Read-only data (strings, const, ecc) */
 		*(.rodata .rodata.*);						/* ALIGN(4) Move cursor to next address divisible by 4 */
 	}
 
-	.data: ALIGN(4) {									/* Initialize data (int n = 42;) */
+	.data ALIGN(4) : {									/* Initialize data (int n = 42;) */
 		*(.data .data.*);
 	}
 
-	.bss: ALIGN(4) {									/* Not initialized data (int n;), zero filled ad boot */
+	.bss ALIGN(4) : {									/* Not initialized data (int n;), zero filled ad boot */
 		__bss = .;											/* Start of bss */
 		*(.bss .bss.* .sbss .sbss.*);
 		__bss_end = .;									/* End of bss */

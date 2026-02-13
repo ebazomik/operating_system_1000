@@ -14,10 +14,9 @@ extern char __bss[], __bss_end[], __stack_top[];
 // of __bss section.
 // __bss_end - __bss
 void *memset(void *buf, char c, size_t n){
-	unit8_t *p = (uint8_t *)buf;
+	uint8_t *p = (uint8_t *)buf;
 	while(n--){
-		*p = c;
-		*p++;
+		*p++ = c;
 	}
 	return buf;
 }
