@@ -32,7 +32,7 @@ SECTIONS {
 	.bss: ALIGN(4) {									/* Not initialized data (int n;), zero filled ad boot */
 		__bss = .;											/* Start of bss */
 		*(.bss .bss.* .sbss .sbss.*);
-		__end_bss = .;									/* End of bss */
+		__bss_end = .;									/* End of bss */
 	}
 
 	. = ALIGN(4);											/* Align stack to 4 bytes */
